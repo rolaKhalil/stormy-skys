@@ -1,21 +1,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import thunk from 'redux-thunk'
+import createSagaMiddleware from 'redux-saga'
 import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import { logger } from 'redux-logger'
+import { takeEvery } from 'redux-saga/effects'
 
+import { weatherSaga } from './sagas'
 import WeatherApp from './WeatherApp'
 import registerServiceWorker from './registerServiceWorker'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import'./WeatherApp.css'
 import './index.css'
 
+function * rootSaga () {
+    yield takeEvery('WEATHER_REQUEST', weatherSaga)
+}
+
+const sagaMiddleware = createSagaMiddleware() 
+
 const initalState = {
     city: undefined,
     country: undefined,
-    weatherStateName: undefined, 
     applicabledDate: undefined,
+    weatherStateName: undefined, 
     minTemp:undefined,
     maxTemp: undefined,
     theTemp: undefined,
@@ -36,9 +43,10 @@ function reducer(state = initalState, action) {
 
 const store = createStore (
     reducer,
-    applyMiddleware(thunk, logger)
-)
-    
+    applyMiddleware(sagaMiddleware)
+)   
+
+sagaMiddleware.run(rootSaga)
 
 const App = () => (
     <Provider store={store}> 

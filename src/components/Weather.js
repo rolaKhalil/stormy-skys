@@ -3,14 +3,14 @@ import React from 'react'
 const Weather = props => (
     <div className="weather__info">
         {
-            props.city && props.country && <p className="weather__key"> Location:
+            props.city && props.country && <p className="weather__key"> Location: 
             <span className="weather__value"> {props.city}, {props.country}</span>
             </p> 
         }
 
         {
-            props.applicableDate && <p className="weather__key"> Date: 
-                <span className="weather__value">{props.applicableDate}</span>
+            props.applicabledDate && <p className="weather__key"> Date:  
+                <span className="weather__value">{props.applicabledDate}</span>
             
             </p>
 
@@ -33,7 +33,7 @@ const Weather = props => (
         }
 
         {
-            props.maxTemp && <p className="weather__key"> Maximum Temperature: 
+            props.maxTemp && <p className="weather__key"> Maximum Temperature:  
                 <span className="weather__value">{props.maxTemp}</span>
             
             </p>
@@ -49,7 +49,7 @@ const Weather = props => (
         }
 
         {
-            props.humidity && <p className="weather__key"> Humidity: 
+            props.humidity && <p className="weather__key"> Humidity:  
                  <span className="weather__value">{props.humidity}</span>
             
             </p>
