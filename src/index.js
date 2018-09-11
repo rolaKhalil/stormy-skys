@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore } from 'redux'
+import thunk from 'redux-thunk'
+import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
+import { logger } from 'redux-logger'
 
 import WeatherApp from './WeatherApp'
 import registerServiceWorker from './registerServiceWorker'
@@ -23,16 +25,20 @@ const initalState = {
 
 function reducer(state = initalState, action) { 
     switch(action.type) { 
-        case "WEATHER_REQUEST":
-            return { 
-                // fill later
-            }
+        case "WEATHER_REQUEST_SUCCESS": 
+            return action.payload
+        case "ERROR": 
+            return action.payload
         default: 
             return state
     }
 }
 
-const store = createStore(reducer)
+const store = createStore (
+    reducer,
+    applyMiddleware(thunk, logger)
+)
+    
 
 const App = () => (
     <Provider store={store}> 
