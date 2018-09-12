@@ -3,6 +3,12 @@ import React from 'react'
 const Weather = props => (
     <div className="weather__info">
         {
+            props.city && <p>
+                <img src={'https://www.metaweather.com/static/img/weather/png/64/' + props.weatherStateAbbr + '.png'} alt="Weather"  />
+            </p> 
+        }
+
+        {
             props.city && props.country && <p className="weather__key"> Location: 
             <span className="weather__value"> {props.city}, {props.country}</span>
             </p> 

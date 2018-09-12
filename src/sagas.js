@@ -19,9 +19,10 @@ export function* weatherSaga(action) {
             yield put({
                 type: 'WEATHER_REQUEST_SUCCESS',
                 payload: {
+                    weatherStateAbbr: dataTwo.consolidated_weather[0].weather_state_abbr,
                     city: dataOne[0].title,
                     country: dataTwo.parent.title,
-                    applicabledDate: dataTwo.consolidated_weather[0].applicable_date, 
+                    applicabledDate: dataTwo.consolidated_weather[0].applicable_date,
                     weatherStateName: dataTwo.consolidated_weather[0].weather_state_name, 
                     minTemp: dataTwo.consolidated_weather[0].min_temp,
                     maxTemp: dataTwo.consolidated_weather[0].max_temp,
