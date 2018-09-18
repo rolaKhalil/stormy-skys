@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Form /> renders without crashing 1`] = `
+<form
+  onSubmit="on submit function"
+>
+  <input
+    className="form-group"
+    name="city"
+    placeholder="City"
+    type="text"
+  />
+  <button>
+    Weather
+  </button>
+</form>
+`;

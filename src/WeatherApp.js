@@ -2,17 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux' 
 
 import {weatherRequest, errorHere} from './actions'
-import Title from './components/Title'
-import Form from './components/Form'
-import Weather from './components/Weather'
+import Title from './components/title/Title'
+import Form from './components/form/Form'
+import Weather from './components/weather/Weather'
+import PreviousSearch from './components/previousSearch/PreviousSearch';
 
 class WeatherApp extends React.Component { 
     getWeather = (e) => {
       e.preventDefault();
       const city = e.target.elements.city.value;
       this.props.weatherRequest(city)
-    }  
-  
+    }
+
     render() {
       return (
         <div>
@@ -24,17 +25,31 @@ class WeatherApp extends React.Component {
                 </div>
                 <div className="col-xs-7 form-container">
                   <Form getWeather={this.getWeather}/>
+                  {this.props.last5.length > 0 &&
+                  <div className="previous__weather__key"> Previous Search
+                      {
+                      this.props.last5.map(itemInList => (
+                        <PreviousSearch 
+                          key={itemInList.city}
+                          city={itemInList.city}
+                          weatherRequest={this.props.weatherRequest}
+                        />
+                        )
+                      )
+                    }
+                  </div>
+                  }
                   <Weather
-                    weatherStateAbbr={this.props.weatherStateAbbr}
-                    city={this.props.city}
-                    country={this.props.country}
-                    applicabledDate={this.props.applicabledDate}
-                    weatherStateName={this.props.weatherStateName}
-                    minTemp={this.props.minTemp}
-                    maxTemp={this.props.maxTemp}
-                    theTemp={this.props.theTemp}
-                    humidity={this.props.humidity} 
-                    error={this.props.error}
+                    weatherStateAbbr={this.props.currentWeather.weatherStateAbbr}
+                    city={this.props.currentWeather.city}
+                    country={this.props.currentWeather.country}
+                    applicabledDate={this.props.currentWeather.applicabledDate}
+                    weatherStateName={this.props.currentWeather.weatherStateName}
+                    minTemp={this.props.currentWeather.minTemp}
+                    maxTemp={this.props.currentWeather.maxTemp}
+                    theTemp={this.props.currentWeather.theTemp}
+                    humidity={this.props.currentWeather.humidity} 
+                    error={this.props.currentWeather.error}
                   />
                 </div>
               </div>
@@ -46,16 +61,8 @@ class WeatherApp extends React.Component {
   }
 
   const mapStateToProps = (state) => ({ 
-    weatherStateAbbr: state.weatherStateAbbr,
-    city: state.city,
-    country: state.country,
-    applicabledDate: state.applicabledDate,
-    weatherStateName: state.weatherStateName, 
-    minTemp: state.minTemp,
-    maxTemp: state.maxTemp,
-    theTemp: state.theTemp, 
-    humidity: state.humidity,
-    error: state.error
+    last5: state.last5,
+    currentWeather: state.currentWeather
   })
 
   export default connect(

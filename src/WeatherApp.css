@@ -116,6 +116,13 @@ button:active {
   border: 0;
 }
 
+.previous__weather__key {
+  color: #000238;
+  padding: 0px 0 0px 0;
+  font-weight: 600;
+  font-size: 16pt;
+}
+
 .weather__value {
   color: #fff;
   font-weight: 200;

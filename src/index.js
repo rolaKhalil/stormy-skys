@@ -19,21 +19,41 @@ function * rootSaga () {
 const sagaMiddleware = createSagaMiddleware() 
 
 const initalState = {
-    city: undefined,
-    country: undefined,
-    applicabledDate: undefined,
-    weatherStateName: undefined, 
-    minTemp:undefined,
-    maxTemp: undefined,
-    theTemp: undefined,
-    humidity: undefined,
-    error: undefined
-  }
+    last5: [],
+    currentWeather: {
+        city: undefined,
+        country: undefined,
+        applicabledDate: undefined,
+        weatherStateName: undefined, 
+        minTemp:undefined,
+        maxTemp: undefined,
+        theTemp: undefined,
+        humidity: undefined,
+        error: undefined
+    }
+}
 
-function reducer(state = initalState, action) { 
+function reducer(state = initalState, action) {
     switch(action.type) { 
-        case "WEATHER_REQUEST_SUCCESS": 
-            return action.payload
+        case "WEATHER_REQUEST_SUCCESS":
+            console.log(state.last)
+            console.log(action.payload)
+            for (var i = 0; i < state.last5.length; i++) {
+                if (action.payload.city === state.last5[i].city){ 
+                    return {
+                        ...state,
+                        currentWeather: action.payload,
+                    }
+                }
+                if (state.last5.length > 4){
+                    state.last5.shift()
+                }
+            }
+            return {
+                ...state,
+                currentWeather: action.payload,
+                last5: state.last5.concat(action.payload),
+            }
         case "ERROR": 
             return action.payload
         default: 

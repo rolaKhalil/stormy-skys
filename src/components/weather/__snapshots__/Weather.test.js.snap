@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Weather /> renders without crashing 1`] = `
+<div
+  className="weather__info"
+>
+  <p>
+    <img
+      alt="Weather"
+      src="https://www.metaweather.com/static/img/weather/png/64/sn.png"
+    />
+  </p>
+  <p
+    className="weather__key"
+  >
+     Location:
+    <span
+      className="weather__value"
+    >
+       
+      Toronto
+      , 
+      Canada
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Date:
+    <span
+      className="weather__value"
+    >
+      2018-11-19
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Weather:
+    <span
+      className="weather__value"
+    >
+      Light Snow
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Minimum Temperature:
+    <span
+      className="weather__value"
+    >
+      -10
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Maximum Temperature:
+    <span
+      className="weather__value"
+    >
+      0
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Current Temperature:
+    <span
+      className="weather__value"
+    >
+      -2
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+     Humidity:
+    <span
+      className="weather__value"
+    >
+      0
+    </span>
+  </p>
+  <p
+    className="weather__key"
+  >
+    no error
+  </p>
+</div>
+`;
